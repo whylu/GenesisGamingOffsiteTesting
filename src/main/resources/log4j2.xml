@@ -6,6 +6,9 @@
         </Console>
     </Appenders>
     <Loggers>
+        <Logger name="callcenter" level="debug" additivity="false">
+            <appender-ref ref="Console"/>
+        </Logger>
         <Root level="info">
             <AppenderRef ref="Console"/>
         </Root>

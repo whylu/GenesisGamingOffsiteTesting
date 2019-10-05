@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -13,6 +14,7 @@ public class MyCallCenter extends CallCenter {
 
     private static Logger logger = LoggerFactory.getLogger(MyCallCenter.class);
     private ExecutorService executorService = Executors.newCachedThreadPool();
+    public Queue<Result> results = new LinkedList<>();
 
     public MyCallCenter() {
         setCallQueue(new InMemCallQueue());
@@ -29,6 +31,7 @@ public class MyCallCenter extends CallCenter {
 
     @Override
     protected void onCallFinished(Result result) {
+        results.add(result);
         logger.info("Call finished: call: {}, level:{}, last responser: {}, level: {}",
                 result.getCall().getId(), result.getCall().getLevel(),
                 result.getResponser().getId(), result.getResponser().getLevel());
@@ -36,6 +39,7 @@ public class MyCallCenter extends CallCenter {
 
     @Override
     protected void onCallFailed(Result result) {
+        results.add(result);
         logger.error("Call failed: call level: {}, last responser level: {}", result.getCallLevel(), result.getResponserLevel());
     }
 
