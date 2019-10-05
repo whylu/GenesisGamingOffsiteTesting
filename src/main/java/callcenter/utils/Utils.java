@@ -9,8 +9,9 @@ public class Utils {
     public static long genCallId() {
         return  callIdCounter.incrementAndGet();
     }
-    protected static void reset() {
+    public static void reset() {
         callIdCounter.set(0);
+        responserIdCounter.set(0);
     }
 
     public static long genResponserId() {

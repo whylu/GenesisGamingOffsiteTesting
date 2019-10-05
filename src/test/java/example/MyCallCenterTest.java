@@ -6,6 +6,8 @@ import callcenter.Result;
 import callcenter.responser.Fresher;
 import callcenter.responser.PM;
 import callcenter.responser.TL;
+import callcenter.utils.Utils;
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,11 @@ import static org.mockito.Mockito.verify;
 
 public class MyCallCenterTest {
     private static Logger logger = LoggerFactory.getLogger(MyCallCenterTest.class);
+
+    @Before
+    public void resetId() {
+        Utils.reset();
+    }
 
     @Test(timeout = 3000L)
     public void testQueueCall() throws InterruptedException {
